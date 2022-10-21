@@ -1,15 +1,26 @@
 import { useState } from "react";
+import { PlusCircle } from "phosphor-react";
 
-export function NewTask() {
+import style from "./style.module.css";
+
+interface NewTaskInputValueProps {
+	fn: (description: string) => void
+}
+
+export function NewTask({ fn }: NewTaskInputValueProps) {
 	const [newTaskInputValue, setNewTaskInputValue] = useState("");
 	return ( 
-		<div>
+		<div className={style.newTask}>
 			<input 
 				type="text" 
+				placeholder="Adicione uma nova tarefa"
 				value={newTaskInputValue} 
 				onChange={(e)=>setNewTaskInputValue(e.target.value)}
 			/>
-			<button>Criar</button>
+			<button onClick={() => fn(newTaskInputValue)}>
+				Criar
+				<PlusCircle weight="bold" color="white" />
+			</button>
 		</div>
 	);
 }
