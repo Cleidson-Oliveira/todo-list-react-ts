@@ -1,3 +1,61 @@
 .task {
-    
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    height: 4.5rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    background-color: var(--gray-500);
+}
+
+.task button {
+    width: 1.5rem;
+    height: 1.5rem;
+    cursor: pointer;
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--purple-dark);
+    color: var(--gray-100);
+}
+
+.check:hover {
+    background-color: var(--purple);
+}
+
+.uncheck {
+    border: 2px solid var(--blue);
+    border-radius: 50%;
+    background-color: transparent;
+}
+
+.uncheck:hover {
+    border: 2px solid var(--blue-dark);
+    background-color: var(--gray-400);
+}
+
+.description {
+    width: 85%;
+    color: var(--gray-100);
+}
+
+.descriptiontaskcomplited {
+    width: 85%;
+    color: var(--gray-300);
+    text-decoration: line-through;
+}
+
+.trash {
+    border: none;
+    background-color: transparent;
+    color: var(--gray-300);
+}
+
+.trash:hover {
+    color: var(--danger);
 }

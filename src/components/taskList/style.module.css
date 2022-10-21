@@ -1,0 +1,52 @@
+.taskList {
+    width: 46rem;
+    margin: 5.75rem auto 0;
+}
+
+.taskList header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.taskList header span {
+    height: 1.25rem;
+    font-size: .875rem;
+}
+
+.taskList header span:first-child {
+    color: var(--blue);
+}
+
+.taskList header span:last-child {
+    color: var(--purple);
+}
+
+.counter {
+    border-radius: calc(1.25rem/2);
+    background-color: var(--gray-400);
+    color: var(--gray-200);
+}
+
+.taskList div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    height: 15.25rem;
+    border-top: 1px solid var(--gray-400);
+    border-radius: .5rem;
+}
+
+.taskList ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.taskList p {
+    line-height: 140%;
+}

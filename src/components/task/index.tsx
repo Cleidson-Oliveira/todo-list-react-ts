@@ -1,17 +1,27 @@
-import style from "style.module.css";
+import { Check, Trash } from "phosphor-react";
+import style from "./style.module.css";
 
-interface TaskProps {
+export interface ITask {
     id: string,
     description: string,
     isComplited: boolean
 }
 
-export function Task (props: TaskProps) {
+interface TaskProps { 
+	task: ITask
+}
+
+export function Task ({ task }: TaskProps) {
 	return ( 
-		<div className={style.task}>
-			{props.isComplited && <button>check</button>}
-			<p>{props.description}</p>
-			<button></button>
-		</div>
+		<li className={style.task}>
+			{task.isComplited
+				? <button className={style.check}><Check/></button>
+				: <button className={style.uncheck}></button>
+			}
+			<p className={task.isComplited ? style.descriptiontaskcomplited : style.description}>
+				{task.description}
+			</p>
+			<button className={style.trash}><Trash/></button>
+		</li>
 	);
 }
