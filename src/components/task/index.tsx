@@ -1,4 +1,6 @@
 import { Check, Trash } from "phosphor-react";
+import { useContext } from "react";
+import { TaskContext } from "../../contexts/tasks/context";
 import style from "./style.module.css";
 
 export interface ITask {
@@ -12,16 +14,17 @@ interface TaskProps {
 }
 
 export function Task ({ task }: TaskProps) {
+	const { deleteTask, setTaskAsComplited } = useContext(TaskContext);
 	return ( 
 		<li className={style.task}>
 			{task.isComplited
-				? <button className={style.check}><Check/></button>
-				: <button className={style.uncheck}></button>
+				? <button onClick={() => setTaskAsComplited(task.id)} className={style.check}><Check/></button>
+				: <button onClick={() => setTaskAsComplited(task.id)} className={style.uncheck}></button>
 			}
 			<p className={task.isComplited ? style.descriptiontaskcomplited : style.description}>
 				{task.description}
 			</p>
-			<button className={style.trash}><Trash/></button>
+			<button onClick={() => deleteTask(task.id)} className={style.trash}><Trash/></button>
 		</li>
 	);
 }

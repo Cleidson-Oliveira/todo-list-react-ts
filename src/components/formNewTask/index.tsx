@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { PlusCircle } from "phosphor-react";
 
 import style from "./style.module.css";
+import { TaskContext } from "../../contexts/tasks/context";
 
-interface NewTaskInputValueProps {
-	fn: (description: string) => void
-}
-
-export function NewTask({ fn }: NewTaskInputValueProps) {
+export function NewTask() {
 	const [newTaskInputValue, setNewTaskInputValue] = useState("");
+	const { createTask } = useContext(TaskContext);
+
+	const handleAddNewTask = () => {
+		if (newTaskInputValue == "") {
+			alert("Você deve incluir uma descrição para a tarefa!");
+		} else {
+			createTask(newTaskInputValue); 
+			setNewTaskInputValue("");
+		}
+	};
+	
 	return ( 
 		<div className={style.newTask}>
 			<input 
@@ -17,7 +25,7 @@ export function NewTask({ fn }: NewTaskInputValueProps) {
 				value={newTaskInputValue} 
 				onChange={(e)=>setNewTaskInputValue(e.target.value)}
 			/>
-			<button onClick={() => fn(newTaskInputValue)}>
+			<button onClick={handleAddNewTask}>
 				Criar
 				<PlusCircle weight="bold" color="white" />
 			</button>

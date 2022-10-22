@@ -1,12 +1,12 @@
-import { ITask, Task } from "../task";
+import { useContext } from "react";
+import { TaskContext } from "../../contexts/tasks/context";
+import { Task } from "../task";
 
 import style from "./style.module.css";
 
-interface TasksListProps{
-    tasks: ITask[]
-}
+function TasksList() {
 
-function TasksList({ tasks }: TasksListProps) {
+	const { tasks, complitedTasksAmount } = useContext(TaskContext);
 
 	return ( 
 		<div className={style.taskList}>
@@ -17,10 +17,12 @@ function TasksList({ tasks }: TasksListProps) {
 				</span>
 				<span>
 					<p>Concluídas</p>
-					<p className={style.counter}>{tasks.length}</p>
+					<p className={style.counter}>
+						{complitedTasksAmount > 0 ? `${complitedTasksAmount} de ${tasks.length}` : 0}
+					</p>
 				</span>
 			</header>
-			{tasks?.length === 0	
+			{tasks.length === 0	
 				? <div>
 					<img src="./clipboard.svg" alt="" />
 					<span>
