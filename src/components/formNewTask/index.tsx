@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
-import { PlusCircle } from "phosphor-react";
+import { toast } from "react-toastify";
+import { TaskContext } from "../../contexts/tasks/context";
 
 import style from "./style.module.css";
-import { TaskContext } from "../../contexts/tasks/context";
+
+import { PlusCircle } from "phosphor-react";
 
 export function NewTask() {
 	const [newTaskInputValue, setNewTaskInputValue] = useState("");
@@ -10,7 +12,7 @@ export function NewTask() {
 
 	const handleAddNewTask = () => {
 		if (newTaskInputValue == "") {
-			alert("Você deve incluir uma descrição para a tarefa!");
+			toast.error("Você deve incluir uma descrição para a tarefa!");
 		} else {
 			createTask(newTaskInputValue); 
 			setNewTaskInputValue("");
