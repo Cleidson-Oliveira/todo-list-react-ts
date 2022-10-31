@@ -6,7 +6,7 @@ import style from "./style.module.css";
 export interface ITask {
     id: string,
     description: string,
-    isComplited: boolean
+    isCompleted: boolean
 }
 
 interface TaskProps { 
@@ -14,14 +14,14 @@ interface TaskProps {
 }
 
 export function Task ({ task }: TaskProps) {
-	const { deleteTask, setTaskAsComplited } = useContext(TaskContext);
+	const { deleteTask, setTaskAsCompleted } = useContext(TaskContext);
 	return ( 
 		<li className={style.task}>
-			{task.isComplited
-				? <button onClick={() => setTaskAsComplited(task.id)} className={style.check}><Check/></button>
-				: <button onClick={() => setTaskAsComplited(task.id)} className={style.uncheck}></button>
+			{task.isCompleted
+				? <button onClick={() => setTaskAsCompleted(task.id)} className={style.check}><Check/></button>
+				: <button onClick={() => setTaskAsCompleted(task.id)} className={style.uncheck}></button>
 			}
-			<p className={task.isComplited ? style.descriptiontaskcomplited : style.description}>
+			<p className={task.isCompleted ? style.descriptiontaskcompleted : style.description}>
 				{task.description}
 			</p>
 			<button onClick={() => deleteTask(task.id)} className={style.trash}><Trash/></button>

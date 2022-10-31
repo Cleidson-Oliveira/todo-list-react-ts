@@ -11,23 +11,23 @@ interface TasksProviderProps {
 export const TasksProvider = ({children}: TasksProviderProps) => {
 	const [ tasks, setTasks ] = useState([] as ITask[]);
 
-	const [ complitedTasksAmount, setComplitedTasksAmount ] = useState(0);
+	const [ completedTasksAmount, setCompletedTasksAmount ] = useState(0);
 
 	const createTask = (description: string) => {
 		const newTask = {
 			id: uuidv4(),
 			description,
-			isComplited: false
+			isCompleted: false
 		};
 
 		setTasks(prevState => [...prevState, newTask]);
 		saveTasksOnStorage([...tasks, newTask]);
 	};
 
-	const setTaskAsComplited = (id: string) => {
+	const setTaskAsCompleted = (id: string) => {
 		let updatedTask = tasks;
 		updatedTask = updatedTask.map((task) => (
-			task.id === id ? {...task, isComplited: !task.isComplited} : task
+			task.id === id ? {...task, isCompleted: !task.isCompleted} : task
 		));
 		setTasks(updatedTask);
 		saveTasksOnStorage(updatedTask);
@@ -60,15 +60,15 @@ export const TasksProvider = ({children}: TasksProviderProps) => {
 	}, []);
 
 	useEffect(() => {
-		const complitedtasks = tasks.reduce((acumulator, task) => (
-			task.isComplited ? acumulator + 1 : acumulator
+		const completedtasks = tasks.reduce((acumulator, task) => (
+			task.isCompleted ? acumulator + 1 : acumulator
 		), 0);
 
-		setComplitedTasksAmount(complitedtasks);
+		setCompletedTasksAmount(completedtasks);
 	}, [tasks]);
 
 	return (
-		<TaskContext.Provider value={{tasks, complitedTasksAmount, createTask, setTaskAsComplited, deleteTask}}>
+		<TaskContext.Provider value={{tasks, completedTasksAmount, createTask, setTaskAsCompleted, deleteTask}}>
 			{children}
 		</TaskContext.Provider>
 	);

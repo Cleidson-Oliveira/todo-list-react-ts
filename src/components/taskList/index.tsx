@@ -6,7 +6,7 @@ import style from "./style.module.css";
 
 function TasksList() {
 
-	const { tasks, complitedTasksAmount } = useContext(TaskContext);
+	const { tasks, completedTasksAmount } = useContext(TaskContext);
 
 	return ( 
 		<div className={style.taskList}>
@@ -18,7 +18,7 @@ function TasksList() {
 				<span>
 					<p>Concluídas</p>
 					<p className={style.counter}>
-						{complitedTasksAmount > 0 ? `${complitedTasksAmount} de ${tasks.length}` : 0}
+						{completedTasksAmount > 0 ? `${completedTasksAmount} de ${tasks.length}` : 0}
 					</p>
 				</span>
 			</header>
